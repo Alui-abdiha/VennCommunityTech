@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "./auth";
 
 export const api = axios.create({
-  baseURL: "https://venntechcommunity.up.railway.app/",
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 api.interceptors.request.use((config) => {
