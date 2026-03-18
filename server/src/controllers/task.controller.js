@@ -261,6 +261,8 @@ export async function confirmTask(req, res) {
 
 export async function rejectTask(req, res) {
   try {
+    const { reason = "" } = req.body;
+
     const task = await Task.findById(req.params.id);
 
     if (!task) {
@@ -296,12 +298,22 @@ export async function rejectTask(req, res) {
     task.confirmedBy = null;
     task.confirmedAt = null;
 
+    if (reason.trim()) {
+      task.comments.push({
+        message: reason.trim(),
+        authorId: req.user._id,
+        authorRole: req.user.role,
+        type: "REJECTION",
+      });
+    }
+
     await task.save();
 
     const populatedTask = await Task.findById(task._id)
       .populate("assignedTo", "fullName email role points")
       .populate("projectId", "name managerId leaderId")
-      .populate("rejectedBy", "fullName role");
+      .populate("rejectedBy", "fullName role")
+      .populate("comments.authorId", "fullName email role");
 
     res.json({
       ok: true,
@@ -312,6 +324,172 @@ export async function rejectTask(req, res) {
     res.status(500).json({
       ok: false,
       message: error.message || "Failed to reject task",
+    });
+  }
+}
+
+
+export async function updateTaskProgress(req, res) {
+  try {
+    const { status, progress, deadline, startDate, priority } = req.body;
+
+    const task = await Task.findById(req.params.id);
+    if (!task) {
+      return res.status(404).json({
+        ok: false,
+        message: "Task not found",
+      });
+    }
+
+    if (
+      String(task.assignedTo) !== String(req.user._id) &&
+      req.user.role !== "ADMIN" &&
+      req.user.role !== "PROJECT_MANAGER" &&
+      req.user.role !== "TEAM_LEADER"
+    ) {
+      return res.status(403).json({
+        ok: false,
+        message: "Forbidden",
+      });
+    }
+
+    if (status !== undefined) task.status = status;
+    if (progress !== undefined) task.progress = Math.max(0, Math.min(100, Number(progress) || 0));
+    if (deadline !== undefined) task.deadline = deadline || null;
+    if (startDate !== undefined) task.startDate = startDate || null;
+    if (priority !== undefined) task.priority = priority;
+
+    await task.save();
+
+    res.json({ ok: true, task });
+  } catch (e) {
+    res.status(500).json({
+      ok: false,
+      message: e.message,
+    });
+  }
+}
+
+function canAccessTask(task, reqUser) {
+  if (reqUser.role === "ADMIN") return true;
+
+  if (reqUser.role === "MEMBER") {
+    return String(task.assignedTo) === String(reqUser._id);
+  }
+
+  return true;
+}
+
+async function canManageTask(task, reqUser) {
+  if (reqUser.role === "ADMIN") return true;
+
+  const project = await Project.findById(task.projectId).select("managerId leaderId");
+  if (!project) return false;
+
+  if (reqUser.role === "PROJECT_MANAGER") {
+    return String(project.managerId) === String(reqUser._id);
+  }
+
+  if (reqUser.role === "TEAM_LEADER") {
+    return String(project.leaderId) === String(reqUser._id);
+  }
+
+  return false;
+}
+
+export async function addTaskComment(req, res) {
+  try {
+    const { message, type = "GENERAL" } = req.body;
+
+    if (!message || !message.trim()) {
+      return res.status(400).json({
+        ok: false,
+        message: "Comment message is required",
+      });
+    }
+
+    const task = await Task.findById(req.params.id);
+    if (!task) {
+      return res.status(404).json({
+        ok: false,
+        message: "Task not found",
+      });
+    }
+
+    const allowed =
+      canAccessTask(task, req.user) || (await canManageTask(task, req.user));
+
+    if (!allowed) {
+      return res.status(403).json({
+        ok: false,
+        message: "You are not allowed to comment on this task",
+      });
+    }
+
+    task.comments.push({
+      message: message.trim(),
+      authorId: req.user._id,
+      authorRole: req.user.role,
+      type,
+    });
+
+    await task.save();
+
+    const updatedTask = await Task.findById(task._id)
+      .populate("assignedTo", "fullName email role points")
+      .populate("projectId", "name managerId leaderId")
+      .populate("createdBy", "fullName role")
+      .populate("completedBy", "fullName role")
+      .populate("confirmedBy", "fullName role")
+      .populate("rejectedBy", "fullName role")
+      .populate("comments.authorId", "fullName email role");
+
+    res.json({
+      ok: true,
+      message: "Comment added successfully",
+      task: updatedTask,
+      comments: updatedTask.comments,
+    });
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      message: error.message || "Failed to add comment",
+    });
+  }
+}
+
+export async function listTaskComments(req, res) {
+  try {
+    const task = await Task.findById(req.params.id).populate(
+      "comments.authorId",
+      "fullName email role"
+    );
+
+    if (!task) {
+      return res.status(404).json({
+        ok: false,
+        message: "Task not found",
+      });
+    }
+
+    const allowed =
+      canAccessTask(task, req.user) || (await canManageTask(task, req.user));
+
+    if (!allowed) {
+      return res.status(403).json({
+        ok: false,
+        message: "You are not allowed to view comments for this task",
+      });
+    }
+
+    res.json({
+      ok: true,
+      comments: task.comments || [],
+    });
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      message: error.message || "Failed to load comments",
     });
   }
 }

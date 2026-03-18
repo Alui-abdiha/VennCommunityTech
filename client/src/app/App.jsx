@@ -15,6 +15,10 @@ import Leaderboard from "../pages/dashboard/Leaderboard";
 
 import AdminUsers from "../pages/AdminUsers";
 import Teams from "../pages/dashboard/Teams";
+import Milestones from "../pages/dashboard/Milestones";
+import GanttCustom from "../pages/dashboard/GanttCustom";
+import ChatBoard from "../pages/dashboard/ChatBoard";
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -41,6 +45,9 @@ export default function App() {
           <Route path="tasks" element={<Tasks />} />
           <Route path="leaderboard" element={<Leaderboard />} />
           <Route path="teams" element={<Teams />} />
+          <Route path="milestones" element={<Milestones />} />
+          <Route path="gantt" element={<GanttCustom />} />
+          <Route path="chat" element={<ChatBoard />} />
         </Route>
 
         {/* Admin */}

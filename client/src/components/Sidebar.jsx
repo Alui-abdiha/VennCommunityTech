@@ -70,7 +70,14 @@ export default function Sidebar() {
           <Trophy size={18} />
           Leaderboard
         </NavLink>
-
+        <NavLink to="/dashboard/milestones"
+        className={({ isActive }) =>
+            `${linkClass} ${isActive ? activeClass : ""}`
+          }>
+        Milestones</NavLink>
+<NavLink to="/dashboard/chat" className={linkClass}>
+  ChatBoard
+</NavLink>
         {user?.role === "ADMIN" && (
           <NavLink
             to="/dashboard/teams"
@@ -78,7 +85,10 @@ export default function Sidebar() {
               `${linkClass} ${isActive ? activeClass : ""}`
             }
           >
-            <Users size={18} />
+            <NavLink to="/dashboard/gantt" className={linkClass}>
+            Gantt Chart
+          </NavLink>
+          <Users size={18} />
             Teams
           </NavLink>
         )}

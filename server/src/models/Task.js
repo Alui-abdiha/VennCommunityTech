@@ -1,5 +1,35 @@
 import mongoose from "mongoose";
 
+const commentSchema = new mongoose.Schema(
+  {
+    message: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    authorId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    authorRole: {
+      type: String,
+      enum: ["ADMIN", "TEAM_LEADER", "PROJECT_MANAGER", "MEMBER"],
+      required: true,
+    },
+    type: {
+      type: String,
+      enum: ["GENERAL", "ISSUE", "UPDATE", "REJECTION", "APPROVAL"],
+      default: "GENERAL",
+    },
+    isInternal: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  { timestamps: true }
+);
+
 const taskSchema = new mongoose.Schema(
   {
     title: {
@@ -26,6 +56,22 @@ const taskSchema = new mongoose.Schema(
       required: true,
     },
 
+    priority: {
+      type: String,
+      enum: ["LOW", "MEDIUM", "HIGH", "URGENT"],
+      default: "MEDIUM",
+    },
+
+    progress: {
+      type: Number,
+      default: 0,
+      min: 0,
+      max: 100,
+    },
+
+    startDate: { type: Date, default: null },
+    deadline: { type: Date, default: null },
+
     assignedTo: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -37,6 +83,8 @@ const taskSchema = new mongoose.Schema(
       enum: ["TODO", "IN_PROGRESS", "COMPLETED", "CONFIRMED", "REJECTED"],
       default: "TODO",
     },
+
+    comments: [commentSchema],
 
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,

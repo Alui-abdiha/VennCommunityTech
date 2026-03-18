@@ -12,6 +12,8 @@ import adminRoutes from "./routes/admin.routes.js";
 import statsRoutes from "./routes/statsRoutes.js";
 import teamRoutes from "./routes/teamRoutes.js";
 import userRoutes from "./routes/userRoutes.js"
+import milestoneRoutes from "./routes/milestone.routes.js";
+import chatRoutes from "./routes/chat.routes.js";
 
 dotenv.config();
 
@@ -45,6 +47,8 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/stats", statsRoutes);
 app.use("/api/teams", teamRoutes);
 app.use("/api/users",userRoutes);
+app.use("/api/milestones", milestoneRoutes);
+app.use("/api/chat", chatRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
