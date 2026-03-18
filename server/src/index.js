@@ -20,7 +20,9 @@ dotenv.config();
 const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://venncommunitytech-production.up.railway.app",
+  "https://venncommunitytech-production.up.railway.app","https://main.d303qnsvqdzuym.amplifyapp.com",
+    "https://venncommunitytech.org",
+    "https://www.venncommunitytech.org"
 ];
 
 app.use(
