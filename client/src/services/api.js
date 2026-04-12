@@ -5,7 +5,7 @@ const baseURL = "https://api.venncommunitytech.org/api" || "http://localhost:500
 
 export const api = axios.create({
   baseURL,
-  
+   withCredentials: true,
 });
 
 api.interceptors.request.use((config) => {
