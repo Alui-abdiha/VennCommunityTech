@@ -15,8 +15,9 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b soft-border bg-[rgb(var(--bg))]/70 backdrop-blur-xl supports-[backdrop-filter]:bg-[rgb(var(--bg))]/60">
       <div className="containerX flex h-16 items-center justify-between">
+        <img src='/OfficialLogo.jpeg' alt="logo" style={{ width: "50px", height: "50px",marginTop:"6px",borderRadius:"50%" }}></img>
         <Link to="/" className="text-lg font-black tracking-tight">
-          Venn Tech Co
+          Venn Tech Community
         </Link>
 
         <nav className="flex items-center gap-3 text-sm">
