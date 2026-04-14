@@ -9,7 +9,8 @@ import {
   ChartBar ,
   Milestone,
   BotMessageSquare,
-  ShieldCheck
+  ShieldCheck,
+  User, UserCog
 } from "lucide-react";
 
 export default function Sidebar() {
@@ -26,9 +27,24 @@ export default function Sidebar() {
       
       <div className="font-black text-lg mb-2">Menu</div>
 
-      <div className="text-muted text-sm mb-6">
-        {user?.fullName} • {user?.role}
-      </div>
+     <div className="flex items-center gap-3 mb-6 px-3 py-2.5 rounded-xl soft-border bg-white/5 dark:bg-white/5">
+  {/* Name Section */}
+  <div className="flex items-center gap-2 flex-1 min-w-0">
+    <User size={16} className="shrink-0 text-[rgb(var(--brand))]" />
+    <span className="text-sm font-semibold truncate">
+      {user?.fullName}
+    </span>
+  </div>
+
+  {/* Divider + Role Section */}
+  <div className="flex items-center gap-2 shrink-0">
+    <span className="h-4 w-px bg-white/20 dark:bg-white/30" />
+    <ShieldCheck size={14} className="text-muted" />
+    <span className="text-xs font-medium text-muted uppercase tracking-wider">
+      {user?.role}
+    </span>
+  </div>
+</div>
 
       <nav className="space-y-2">
 
