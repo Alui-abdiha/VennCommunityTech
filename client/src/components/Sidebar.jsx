@@ -6,6 +6,9 @@ import {
   CheckSquare,
   Trophy,
   Users,
+  ChartBar ,
+  Milestone,
+  BotMessageSquare,
   ShieldCheck
 } from "lucide-react";
 
@@ -74,8 +77,11 @@ export default function Sidebar() {
         className={({ isActive }) =>
             `${linkClass} ${isActive ? activeClass : ""}`
           }>
+             <Milestone size={18} />
         Milestones</NavLink>
 <NavLink to="/dashboard/chat" className={linkClass}>
+ 
+  <BotMessageSquare size={18} />
   ChatBoard
 </NavLink>
         {user?.role === "ADMIN" && (
@@ -85,14 +91,17 @@ export default function Sidebar() {
               `${linkClass} ${isActive ? activeClass : ""}`
             }
           >
-            <NavLink to="/dashboard/gantt" className={linkClass}>
-            Gantt Chart
-          </NavLink>
+           
           <Users size={18} />
             Teams
           </NavLink>
         )}
-
+      {
+        user?.role === 'ADMIN' && ( <NavLink to="/dashboard/gantt" className={linkClass}>
+           <ChartBar  size={18}/>
+            Gantt Chart
+          </NavLink>)
+      }
         {user?.role === "ADMIN" && (
           <NavLink
             to="/admin/users"
