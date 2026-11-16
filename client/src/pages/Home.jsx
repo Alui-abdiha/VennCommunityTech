@@ -13,9 +13,72 @@ import {
   CheckCircle2,
   Code2,
   Target,
+  BookOpen,
+  UserCheck,
+  Briefcase,
+  FolderGit2,
+  Presentation,
+  Network,
+  Award,
+  Building2,
+  Scale,
+  Settings2,
 } from "lucide-react";
 
 import Navbar from "../components/Navbar.jsx";
+
+const keyScopes = [
+  {
+    title: "Learning & Development",
+    desc: "Structured learning pathways, hands-on technical training, practical exercises, and curated study resources.",
+    icon: BookOpen,
+  },
+  {
+    title: "Mentorship Programme",
+    desc: "Direct guidance from experienced professionals supporting fresh graduates and junior members as they grow.",
+    icon: UserCheck,
+  },
+  {
+    title: "Career Development",
+    desc: "Practical CV reviews, mock interviews, career coaching, and job-readiness support to help you land your next role.",
+    icon: Briefcase,
+  },
+  {
+    title: "Technical Projects",
+    desc: "Real-world collaborative builds that strengthen your GitHub portfolio and give you genuine production experience.",
+    icon: FolderGit2,
+  },
+  {
+    title: "Workshops & Events",
+    desc: "Interactive technical workshops, webinars, seminars, hackathons, and regular community meetups.",
+    icon: Presentation,
+  },
+  {
+    title: "Professional Networking",
+    desc: "Meaningful connections linking members with industry leaders, local companies, and partner tech communities.",
+    icon: Network,
+  },
+  {
+    title: "Certification & Recognition",
+    desc: "Study support for professional certifications alongside formal recognition for member milestones and achievements.",
+    icon: Award,
+  },
+  {
+    title: "Internship & Job Opportunities",
+    desc: "Curated access to internships, job openings, volunteering roles, and career-launching opportunities.",
+    icon: Building2,
+  },
+  {
+    title: "Community Governance",
+    desc: "Clear membership standards, accountable leadership, fair participation guidelines, and transparent administration.",
+    icon: Scale,
+  },
+  {
+    title: "Digital Platform Management",
+    desc: "Integrated member dashboards, smart notifications, activity tracking, project coordination, and role-based access.",
+    icon: Settings2,
+  },
+];
 
 const features = [
   {
@@ -92,8 +155,8 @@ const teamMembers = [
 const benefits = [
   "A curated, supportive network of learners and builders",
   "Hands-on experience through real collaborative projects",
-  "Clear roles, structured workflows, and practical mentorship",
-  "Direct communication with peers and project leads",
+  "1-on-1 mentorship, career guidance, and CV preparation",
+  "Access to workshops, hackathons, and job opportunities",
   "Recognition and certification for your contributions",
 ];
 
@@ -132,9 +195,9 @@ export default function Home() {
 
             <div className="mt-12 grid max-w-lg grid-cols-3 gap-5 border-t soft-border pt-7">
               <div>
-                <p className="text-3xl font-bold">9</p>
+                <p className="text-3xl font-bold">10</p>
                 <p className="text-muted mt-2 text-xs sm:text-sm">
-                  Integrated tools
+                  Core programmes
                 </p>
               </div>
 
@@ -171,8 +234,8 @@ export default function Home() {
               <div>
                 <p className="font-semibold">Everything in One Place</p>
                 <p className="text-muted mt-1 text-sm">
-                  From team chats to project roadmaps—no more juggling scattered
-                  tools.
+                  From mentorship and workshops to project roadmaps—no more
+                  juggling scattered tools.
                 </p>
               </div>
             </div>
@@ -180,7 +243,56 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FEATURES */}
+      {/* KEY AREAS & SCOPE */}
+      <section className="containerX py-16 md:py-24">
+        <div className="mb-12 max-w-2xl">
+          <p className="text-muted mb-3 text-xs font-semibold uppercase tracking-[0.2em]">
+            What We Do
+          </p>
+
+          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+            Our Core Pillars & Programmes
+          </h2>
+
+          <p className="text-muted mt-4 leading-8">
+            We support members at every stage of their tech journey—from
+            writing their first lines of code to landing industry roles and
+            leading community initiatives.
+          </p>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {keyScopes.map((scope, index) => {
+            const Icon = scope.icon;
+
+            return (
+              <article
+                key={scope.title}
+                className="flex flex-col justify-between rounded-2xl border soft-border card-bg p-6 transition duration-300 hover:-translate-y-1 md:p-7"
+              >
+                <div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border soft-border">
+                      <Icon size={21} />
+                    </div>
+                    <span className="text-muted text-xs font-semibold tracking-wider">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-5 text-lg font-bold">{scope.title}</h3>
+
+                  <p className="text-muted mt-3 text-sm leading-7">
+                    {scope.desc}
+                  </p>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* PLATFORM FEATURES */}
       <section className="containerX py-16 md:py-24">
         <div className="mb-12 max-w-2xl">
           <p className="text-muted mb-3 text-xs font-semibold uppercase tracking-[0.2em]">
@@ -188,13 +300,13 @@ export default function Home() {
           </p>
 
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-            Designed for Learning and Shipping
+            Tools Built for Learning and Shipping
           </h2>
 
           <p className="text-muted mt-4 leading-8">
             Whether you are taking on your first tech project or leading a
-            squad, our workspace gives you the structure to turn ideas into
-            completed work.
+            squad, our digital platform gives you the structure to turn ideas
+            into completed work.
           </p>
         </div>
 
@@ -224,7 +336,7 @@ export default function Home() {
                     </div>
 
                     <div className="mt-6 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted">
-                      Core Capability
+                      Platform Tool
                     </div>
                   </div>
 
