@@ -1,344 +1,490 @@
+
 import { Link } from "react-router-dom";
-import { Users, ShieldCheck, LayoutDashboard, Trophy, Code, GitBranch, MessageCircle, Calendar } from "lucide-react";
+import {
+  Users,
+  ShieldCheck,
+  LayoutDashboard,
+  Trophy,
+  GitBranch,
+  MessageCircle,
+  Calendar,
+  ClipboardList,
+  UsersRound,
+  ArrowUpRight,
+  CheckCircle2,
+  Code2,
+  Target,
+} from "lucide-react";
+
 import Navbar from "../components/Navbar.jsx";
-import Card from "../components/ui/Card.jsx";
-import Button from "../components/ui/Button.jsx";
 
 const features = [
   {
     title: "Member Registration",
-    desc: "Allow new members to register and join the community in a structured way with automated workflows.",
+    desc: "Allow new members to register and join the community in a structured way with organized registration workflows.",
     icon: Users,
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&h=650&fit=crop",
   },
   {
     title: "Admin Approval",
-    desc: "Review and approve users before giving them access to the platform with role-based permissions.",
+    desc: "Review and approve new members before granting access, with role-based permissions and account management.",
     icon: ShieldCheck,
-    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=900&h=650&fit=crop",
   },
   {
-    title: "Project Dashboard",
-    desc: "Track projects, tasks, teams, and performance from one intuitive dashboard with real-time updates.",
+    title: "Project Management",
+    desc: "Organize projects, monitor progress, and keep your community's work structured in one place.",
     icon: LayoutDashboard,
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&h=650&fit=crop",
+  },
+  {
+    title: "Task Management",
+    desc: "Create tasks, assign responsibilities, track progress, and help members stay focused on their work.",
+    icon: ClipboardList,
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&h=650&fit=crop",
+  },
+  {
+    title: "Team Collaboration",
+    desc: "Bring members together, organize teams, share responsibilities, and work toward common goals.",
+    icon: UsersRound,
+    image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=900&h=650&fit=crop",
+  },
+  {
+    title: "Project Milestones",
+    desc: "Set project goals, monitor important deadlines, and follow progress from beginning to completion.",
+    icon: Target,
+    image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=900&h=650&fit=crop",
+  },
+  {
+    title: "Project Timeline",
+    desc: "Visualize project schedules, follow task dependencies, and understand how work progresses over time.",
+    icon: Calendar,
+    image: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=900&h=650&fit=crop",
+  },
+  {
+    title: "Community Chat",
+    desc: "Communicate with team members, exchange ideas, and stay connected while working on projects.",
+    icon: MessageCircle,
+    image: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=900&h=650&fit=crop",
   },
   {
     title: "Leaderboard",
-    desc: "Reward contribution and highlight top-performing members in the community with gamification.",
+    desc: "Recognize contributions and highlight active members through community performance rankings.",
     icon: Trophy,
-    image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=900&h=650&fit=crop",
   },
-];
-
-const stats = [
-  { label: "Active Members", value: "2,500+", icon: Users },
-  { label: "Projects Completed", value: "180+", icon: Code },
-  { label: "Weekly Events", value: "12", icon: Calendar },
-  { label: "Mentorship Hours", value: "5,000+", icon: MessageCircle },
 ];
 
 const teamMembers = [
   {
-    name: "Aliu",
+    name: "Abdiraham yar ",
     role: "Transitional Director",
-    image: "https://t3.ftcdn.net/jpg/17/76/10/70/360_F_1776107025_GBCtJtS1FoBU1gKHrdYJYPqRtjagwou9.jpg",
   },
   {
-    name: "Marko",
+    name: "Ina khalil",
     role: "Transitional Deputy Director",
-    image: "https://t3.ftcdn.net/jpg/17/76/10/70/360_F_1776107025_GBCtJtS1FoBU1gKHrdYJYPqRtjagwou9.jpg"
   },
   {
-    name: "Hamzoos",
+    name: "One ten",
     role: "Transitional Deputy Director",
-    image: "https://t3.ftcdn.net/jpg/17/76/10/70/360_F_1776107025_GBCtJtS1FoBU1gKHrdYJYPqRtjagwou9.jpg",
   },
-  
+];
+
+const benefits = [
+  "Organized member registration and approval",
+  "Role-based access and dashboards",
+  "Project and task management",
+  "Team collaboration and communication",
+  "Progress tracking and performance recognition",
 ];
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[rgb(var(--bg))] text-[rgb(var(--fg))]">
+    <main className="min-h-screen bg-[rgb(var(--bg))] text-[rgb(var(--fg))]">
       <Navbar />
 
-      {/* Hero Section */}
+      {/* HERO */}
       <section className="containerX py-16 md:py-24">
-        <div className="grid items-center gap-10 lg:grid-cols-2">
-          <div>
-            <div className="inline-flex items-center rounded-full border soft-border card-bg px-4 py-1.5 text-sm text-muted">
-              Tech Community Platform
-            </div>
+        <div className="grid items-center gap-12 lg:grid-cols-2">
 
-            <h1 className="mt-6 text-4xl font-black tracking-tight md:text-6xl">
-             Learn, Grow, Develop skills & Earn professional certification together
+          <div>
+            <span className="inline-flex items-center rounded-full border soft-border px-4 py-2 text-xs font-semibold tracking-wide text-muted">
+              Venn Tech Community Platform
+            </span>
+
+            <h1 className="mt-7 max-w-2xl text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl">
+              Learn, Grow, Develop Skills & Earn Professional Certification Together.
             </h1>
 
-            <p className="text-muted mt-5 max-w-xl text-base md:text-lg leading-7">
-              VennTech Community is a non-profit technology organization focused on empowering individuals through
-              digital skills development and innovation.
+            <p className="text-muted mt-6 max-w-xl text-base leading-8 md:text-lg">
+              Venn Tech Community is a non-profit technology organization
+              focused on empowering individuals through digital skills
+              development, collaboration, and innovation.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/register">
-                <Button>Get Started</Button>
+              <Link to="/register" className="primary-button">
+                Get Started <ArrowUpRight size={18} />
               </Link>
 
-              <Link to="/login">
-                <button className="rounded-xl border soft-border card-bg px-4 py-2 font-semibold transition hover:bg-[rgb(var(--border))]/20">
-                  Sign In
-                </button>
+              <Link to="/login" className="secondary-button">
+                Sign In
               </Link>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-6 text-sm text-muted">
+            <div className="mt-12 grid max-w-lg grid-cols-3 gap-5 border-t soft-border pt-7">
               <div>
-                <span className="text-2xl font-black text-[rgb(var(--fg))]">4+</span>
-                <p>Core modules</p>
+                <p className="text-3xl font-bold">8+</p>
+                <p className="text-muted mt-2 text-xs sm:text-sm">
+                  Key Capabilities
+                </p>
               </div>
+
               <div>
-                <span className="text-2xl font-black text-[rgb(var(--fg))]">100%</span>
-                <p>Role-based flow</p>
+                <p className="text-3xl font-bold">100%</p>
+                <p className="text-muted mt-2 text-xs sm:text-sm">
+                  Role-based flow
+                </p>
               </div>
+
               <div>
-                <span className="text-2xl font-black text-[rgb(var(--fg))]">3</span>
-                <p>dashboard based on Role</p>
+                <p className="text-3xl font-bold">1</p>
+                <p className="text-muted mt-2 text-xs sm:text-sm">
+                  Connected platform
+                </p>
               </div>
             </div>
           </div>
 
-          <div className="relative">
-            <div className="absolute inset-0 -z-10 rounded-[2rem] blur-3xl opacity-30 brand-gradient"></div>
-            
-            <Card className="p-2 md:p-3">
-              <div className="relative overflow-hidden rounded-xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop" 
-                  alt="Dashboard Preview" 
-                  className="w-full h-auto"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[rgb(var(--bg))] via-transparent to-transparent opacity-60"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <div className="card-bg rounded-lg p-4 backdrop-blur-sm">
-                    <div className="flex items-center gap-3">
-                      <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
-                      <p className="text-sm font-semibold">Live Platform Activity</p>
-                    </div>
-                    {/* <p className="text-muted text-xs mt-1">2,500+ active members this week</p> */}
-                  </div>
-                </div>
-              </div>
-            </Card>
-
-            {/* Floating Stats Cards */}
-            <div className="absolute -left-4 top-10 card-bg rounded-xl border soft-border p-3 shadow-xl hidden lg:block animate-bounce" style={{ animationDuration: '3s' }}>
-              <div className="flex items-center gap-2">
-                <div className="rounded-lg bg-blue-500/10 p-2">
-                  <Users className="h-4 w-4 text-blue-500" />
-                </div>
-                <div>
-                  {/* <p className="text-xs text-muted">New Members</p>
-                  <p className="text-lg font-bold">+</p> */}
-                </div>
-              </div>
+          <div>
+            <div className="overflow-hidden rounded-2xl border soft-border">
+              <img
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=900&fit=crop"
+                alt="People collaborating in a professional workspace"
+                className="aspect-[5/4] w-full object-cover"
+              />
             </div>
 
-            <div className="absolute -right-4 bottom-20 card-bg rounded-xl border soft-border p-3 shadow-xl hidden lg:block animate-bounce" style={{ animationDuration: '4s' }}>
-              <div className="flex items-center gap-2">
-                <div className="rounded-lg bg-purple-500/10 p-2">
-                  <Trophy className="h-4 w-4 text-purple-500" />
-                </div>
-                <div>
-                  <p className="text-xs text-muted">Top Contributor</p>
-                  <p className="text-sm font-bold">Hamse Mohamed</p>
-                </div>
+            <div className="mt-4 flex items-center gap-4 rounded-xl border soft-border card-bg p-4">
+              <div className="flex h-11 w-11 items-center justify-center rounded-lg border soft-border">
+                <LayoutDashboard size={21} />
+              </div>
+
+              <div>
+                <p className="font-semibold">One Connected Workspace</p>
+                <p className="text-muted mt-1 text-sm">
+                  Projects, teams, tasks and community activities.
+                </p>
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
-      {/* Stats Section */}
-      {/* <section className="containerX pb-16">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((stat) => {
-            const Icon = stat.icon;
-            return (
-              <Card key={stat.label} className="p-6 text-center">
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl brand-gradient text-white">
-                  <Icon className="h-6 w-6" />
-                </div>
-                <p className="mt-4 text-3xl font-black">{stat.value}</p>
-                <p className="text-muted text-sm">{stat.label}</p>
-              </Card>
-            );
-          })}
-        </div>
-      </section> */}
+      {/* FEATURES */}
+      <section className="containerX py-16 md:py-24">
 
-      {/* Features Section */}
-      <section className="containerX pb-16 md:pb-24">
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-black tracking-tight">Core Features</h2>
-          <p className="text-muted mt-2 max-w-2xl mx-auto">
-            Everything needed to grow and manage a modern tech community.
+        <div className="mb-12 max-w-2xl">
+          <p className="text-muted mb-3 text-xs font-semibold uppercase tracking-[0.2em]">
+            What the platform offers
+          </p>
+
+          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+            Everything Your Community Needs
+          </h2>
+
+          <p className="text-muted mt-4 leading-8">
+            From member registration to project management, Venn Tech
+            Community brings essential community tools together in one
+            organized platform.
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2">
-          {features.map((feature, index) => {
+        <div className="grid gap-6 md:grid-cols-2">
+          {features.map((feature) => {
             const Icon = feature.icon;
+
             return (
-              <Card
+              <article
                 key={feature.title}
-                className={`overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
-                  index % 2 === 0 ? 'lg:grid lg:grid-cols-2' : 'lg:grid lg:grid-cols-2 lg:[&>div:first-child]:order-2'
-                }`}
+                className="group overflow-hidden rounded-2xl border soft-border card-bg transition duration-300 hover:-translate-y-1"
               >
-                <div className="p-6 md:p-8">
-                  <div className="stat-icon-wrap">
-                    <Icon className="stat-icon" />
+                <div className="grid sm:grid-cols-2">
+
+                  <div className="flex flex-col justify-center p-6 md:p-7">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border soft-border">
+                      <Icon size={21} />
+                    </div>
+
+                    <h3 className="mt-5 text-xl font-bold">
+                      {feature.title}
+                    </h3>
+
+                    <p className="text-muted mt-3 text-sm leading-7">
+                      {feature.desc}
+                    </p>
+
+                    <div className="mt-5 flex items-center gap-2 text-sm font-semibold">
+                      Platform feature
+                      <ArrowUpRight size={16} />
+                    </div>
                   </div>
-                  <h3 className="mt-4 text-xl font-bold">{feature.title}</h3>
-                  <p className="text-muted mt-2 text-sm leading-6">{feature.desc}</p>
-                  <button className="mt-4 text-sm font-semibold text-[rgb(var(--primary))] hover:underline">
-                    Learn more →
-                  </button>
+
+                  <div className="min-h-56 overflow-hidden">
+                    <img
+                      src={feature.image}
+                      alt={feature.title}
+                      loading="lazy"
+                      className="h-full min-h-56 w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  </div>
+
                 </div>
-                <div className="relative h-48 lg:h-auto">
-                  <img 
-                    src={feature.image} 
-                    alt={feature.title}
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[rgb(var(--bg))] via-transparent to-transparent lg:bg-gradient-to-l"></div>
-                </div>
-              </Card>
+              </article>
             );
           })}
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="containerX pb-16 md:pb-24">
+      {/* ABOUT THE PLATFORM */}
+      <section className="containerX py-16 md:py-24">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
+
+          <div>
+            <p className="text-muted mb-3 text-xs font-semibold uppercase tracking-[0.2em]">
+              About Venn Tech Community
+            </p>
+
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+              Building Skills, Connections and Opportunities.
+            </h2>
+
+            <p className="text-muted mt-5 leading-8">
+              We aim to create an environment where individuals can
+              develop their technical abilities, work together on
+              meaningful projects, and grow through shared knowledge
+              and experience.
+            </p>
+
+            <p className="text-muted mt-4 leading-8">
+              Our platform provides tools to organize members, manage
+              projects, coordinate teams, and recognize contributions.
+            </p>
+
+            <Link
+              to="/register"
+              className="primary-button mt-8"
+            >
+              Become a Member <ArrowUpRight size={18} />
+            </Link>
+          </div>
+
+          <div className="overflow-hidden rounded-2xl border soft-border">
+            <img
+              src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1200&h=900&fit=crop"
+              alt="Collaborative working environment"
+              loading="lazy"
+              className="aspect-[5/4] w-full object-cover"
+            />
+          </div>
+
+        </div>
+      </section>
+
+      {/* WHY JOIN */}
+      <section className="containerX py-16 md:py-24">
+        <div className="rounded-2xl border soft-border card-bg p-7 md:p-12">
+
+          <div className="grid gap-12 lg:grid-cols-2">
+
+            <div>
+              <p className="text-muted mb-3 text-xs font-semibold uppercase tracking-[0.2em]">
+                Why join us?
+              </p>
+
+              <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+                More Than Just a Technology Community.
+              </h2>
+
+              <p className="text-muted mt-5 leading-8">
+                Be part of a community that encourages learning,
+                teamwork, knowledge sharing, and professional growth.
+                Connect with others and take part in meaningful work.
+              </p>
+            </div>
+
+            <div className="space-y-5">
+              {benefits.map((benefit) => (
+                <div
+                  key={benefit}
+                  className="flex items-start gap-3"
+                >
+                  <CheckCircle2
+                    size={21}
+                    className="mt-1 shrink-0"
+                  />
+
+                  <p className="leading-7">{benefit}</p>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* TEAM */}
+      <section className="containerX py-16 md:py-24">
+
         <div className="mb-12 text-center">
-          <h2 className="text-3xl font-black tracking-tight">Meet Our Team</h2>
-          <p className="text-muted mt-2">
+          <p className="text-muted mb-3 text-xs font-semibold uppercase tracking-[0.2em]">
+            The people behind Venn
+          </p>
+
+          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+            Meet Our Team
+          </h2>
+
+          <p className="text-muted mt-4">
             Dedicated professionals building the future of tech communities.
           </p>
         </div>
 
-       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 place-items-center">
-  {teamMembers.map((member) => (
-    <Card key={member.name} className="overflow-hidden text-center">
-      <div className="relative">
-        <img 
-          src={member.image} 
-          alt={member.name}
-          className="h-48 w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[rgb(var(--bg))] to-transparent opacity-60"></div>
-      </div>
-      <div className="-mt-12 relative p-4">
-        <div className="card-bg rounded-xl border soft-border p-4">
-          <h3 className="font-bold">{member.name}</h3>
-          <p className="text-muted text-sm">{member.role}</p>
-        </div>
-      </div>
-    </Card>
-  ))}
-</div>
-
-      </section>
-
-      {/* Community Activity Section */}
-      <section className="containerX pb-16 md:pb-24">
-        <Card className="overflow-hidden">
-          <div className="grid lg:grid-cols-2">
-            <div className="p-8 md:p-12">
-              <h2 className="text-3xl font-black tracking-tight">
-                Join Our Active Community
-              </h2>
-              <p className="text-muted mt-4 leading-7">
-              Connect with like-minded developers, participate in hackathons, attend workshops, 
-                and grow your skills with mentorship from industry experts.
-              </p>
-              
-              <div className="mt-6 space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="rounded-lg bg-green-500/10 p-2">
-                    <GitBranch className="h-5 w-5 text-green-500" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">Open Source Projects</h4>
-                    <p className="text-muted text-sm">Contribute to real-world projects</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="rounded-lg bg-blue-500/10 p-2">
-                    <MessageCircle className="h-5 w-5 text-blue-500" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">Weekly Meetups</h4>
-                    <p className="text-muted text-sm">Learn and network with peers</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="rounded-lg bg-purple-500/10 p-2">
-                    <Code className="h-5 w-5 text-purple-500" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">Skill Development</h4>
-                    <p className="text-muted text-sm">Master in-demand technologies</p>
-                  </div>
+        <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {teamMembers.map((member) => (
+            <article
+              key={member.name}
+              className="overflow-hidden rounded-2xl border soft-border card-bg"
+            >
+              <div className="flex h-56 items-center justify-center bg-[rgb(var(--card))]">
+                <div className="flex h-24 w-24 items-center justify-center rounded-full border soft-border">
+                  <Users size={42} className="text-muted" />
                 </div>
               </div>
-            </div>
-            <div className="relative min-h-[300px] lg:min-h-full">
-              <img 
-                src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=1200&h=800&fit=crop" 
-                alt="Community Event"
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[rgb(var(--bg))] lg:bg-gradient-to-r"></div>
-            </div>
-          </div>
-        </Card>
-      </section>
 
-      {/* CTA Section */}
-      <section className="containerX pb-20">
-        <div className="relative overflow-hidden rounded-[2rem] border soft-border card-bg p-8 md:p-12">
-          <div className="absolute inset-0 opacity-20">
-            <img 
-              src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600&h=900&fit=crop" 
-              alt="Background"
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <div className="relative max-w-2xl">
-            <h2 className="text-3xl font-black tracking-tight">
-              Ready to organize your community professionally?
-            </h2>
-            <p className="text-muted mt-3 leading-7">
-              Start with registration, approvals, and role-based access, then scale into projects,
-              tasks, and contribution tracking.
-            </p>
+              <div className="p-6">
+                <h3 className="text-lg font-bold">
+                  {member.name}
+                </h3>
 
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link to="/register">
-                <Button>Join Now</Button>
-              </Link>
-
-              <Link to="/login">
-                <button className="rounded-xl border soft-border card-bg px-4 py-2 font-semibold transition hover:bg-[rgb(var(--border))]/20">
-                  Login
-                </button>
-              </Link>
-            </div>
-          </div>
+                <p className="text-muted mt-2 text-sm">
+                  {member.role}
+                </p>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
+
+      {/* COMMUNITY ACTIVITY */}
+      <section className="containerX py-16 md:py-24">
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+
+          <div className="overflow-hidden rounded-2xl border soft-border">
+            <img
+              src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200&h=900&fit=crop"
+              alt="Community members working together"
+              loading="lazy"
+              className="aspect-[5/4] w-full object-cover"
+            />
+          </div>
+
+          <div>
+            <p className="text-muted mb-3 text-xs font-semibold uppercase tracking-[0.2em]">
+              Learn and collaborate
+            </p>
+
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+              Grow Together Through Collaboration.
+            </h2>
+
+            <p className="text-muted mt-5 leading-8">
+              Technology becomes more meaningful when people share
+              knowledge, exchange ideas, and work together. Venn Tech
+              Community provides an organized space for members to
+              participate in projects and community activities.
+            </p>
+
+            <div className="mt-8 space-y-5">
+              <div className="flex items-center gap-4">
+                <Code2 size={22} />
+                <span className="font-medium">Technical skill development</span>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <GitBranch size={22} />
+                <span className="font-medium">Collaborative projects</span>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <MessageCircle size={22} />
+                <span className="font-medium">Community communication</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* FINAL CALL TO ACTION */}
+      <section className="containerX pb-20 pt-10">
+        <div className="rounded-2xl border soft-border card-bg p-8 md:p-14">
+
+          <p className="text-muted mb-4 text-xs font-semibold uppercase tracking-[0.2em]">
+            Get started today
+          </p>
+
+          <h2 className="max-w-3xl text-3xl font-bold tracking-tight md:text-5xl">
+            Your Next Opportunity Starts With Being Part of a Community.
+          </h2>
+
+          <p className="text-muted mt-5 max-w-2xl leading-8">
+            Join Venn Tech Community, connect with other members,
+            develop your skills, and take part in collaborative
+            technology projects.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link to="/register" className="primary-button">
+              Join Now <ArrowUpRight size={18} />
+            </Link>
+
+            <Link to="/login" className="secondary-button">
+              Sign In
+            </Link>
+          </div>
+
+        </div>
+      </section>
+
+     {/* FOOTER */}
+<footer className="border-t soft-border">
+  <div className="containerX flex flex-col gap-4 py-8 sm:flex-row sm:items-center sm:justify-between">
+
+    {/* Logo and Community Name */}
+    <div className="flex items-center gap-3">
+      <img
+        src="/eee.svg"
+        alt="Venn Tech Community Logo"
+        className="h-12 w-12 object-contain"
+      />
+
+      <div>
+        <p className="font-bold">Venn Tech Community</p>
+        <p className="text-muted mt-1 text-sm">
+          Learning, collaboration and innovation.
+        </p>
+      </div>
     </div>
+
+    {/* Copyright */}
+    <p className="text-muted text-sm">
+      © {new Date().getFullYear()} Venn Tech Community. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+</main>
   );
 }
